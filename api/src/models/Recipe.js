@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true,
       },
-      name: {
+      title: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -24,7 +24,7 @@ module.exports = (sequelize) => {
       },
       healthScore: {
         type: DataTypes.INTEGER,
-        allowNullL: false,
+        allowNull: false,
       },
       instructions: {
         type: DataTypes.STRING,

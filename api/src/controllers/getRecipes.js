@@ -6,7 +6,7 @@ const { getRecipeDiets } = require("./getRecipeByName");
 
 const getRecipes = async () => {
   let recipesApi = await axios.get(
-    `${URL}/complexSearch?apiKey=${API_KEY}&number=100&instructionsRequired=true&addRecipeInformation=true`
+    `${URL}/complexSearch?apiKey=${API_KEY}&number=30&instructionsRequired=true&addRecipeInformation=true`
   ).then(async (res) => {
     let recipes = res.data.results.map(
       ({ vegetarian, id, title, healthScore, image, diets }) => {

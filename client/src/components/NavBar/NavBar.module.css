@@ -1,0 +1,112 @@
+.navBar {
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  background: #497944fd;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-image: url("../../img/NavBar.jpg");
+  background-position: right center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 120px;
+  text-shadow: 2px 2px 3px black;
+  color: white;
+  transition: 0.3s ease-in-out;
+  z-index: 120;
+}
+.navBar:before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 120%;
+  background-color: #44aa3bfd;
+  top: 50%;
+  transform: skewX(330deg) translate(-300%, -58%);
+  transition: all 0.5s;
+}
+.navBar:hover {
+  background-color: rgba(149, 231, 149, 0.8);
+  color: #44aa3bfd;
+}
+.navBar:hover::before {
+  transform: skewX(330deg) translate(650%, -58%);
+  transition-delay: 0.1s;
+}
+.logo {
+  height: 80%;
+  margin-top: 10px;
+  margin-left: 25px;
+}
+.menuContainer {
+  display: flex;
+  justify-content: right;
+  margin-right: 250px;
+  margin-top: 60px;
+}
+
+.menuText {
+  font-size: 1.5em;
+  display: flex;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+.menuText:hover {
+  transform: scale(0.9);
+  transition-delay: 0.3s;
+}
+.menuText:visited {
+  color: white;
+}
+
+.active {
+  font-size: 1.5em;
+  display: flex;
+  padding: 10px;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+  transform: scale(1.2);
+  transition-delay: 0.3s;
+}
+
+.active:visited {
+  color: white;
+}
+.searchContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+@media screen and (max-width: 900px) {
+  .navBar {
+    height: 20px;
+  }
+  .searchContainer {
+    justify-content: center;
+    align-items: center;
+  }
+  .logo {
+    height: 20px;
+    width: 30px;
+    margin-left: 5px;
+  }
+  .menuContainer {
+    margin-top: 0px;
+    margin-right: 70px;
+  }
+  .menuText {
+    font-size: 1em;
+    align-items: center;
+    padding: 5px;
+  }
+  .active {
+    font-size: 1em;
+    align-items: center;
+    padding: 5px;
+  }
+}

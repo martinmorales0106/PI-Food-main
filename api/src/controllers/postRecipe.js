@@ -17,7 +17,7 @@ const postRecipe = async ({
   });
 
   const dietInstances = await Diet.findAll({
-    where: { name: diets },
+    where: { name: diets.map((diet) => diet.toString()) },
   });
 
   await recipe.addDiets(dietInstances);

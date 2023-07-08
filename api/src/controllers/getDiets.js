@@ -7,7 +7,7 @@ const getDiets = async () => {
   let diets = await Diet.findAll();
   if (!diets.length) {
     const { data } = await axios.get(
-      `${URL}/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`
+      `${URL}/complexSearch?apiKey=${API_KEY}&number=30&addRecipeInformation=true`
     );
     const apiDiets = new Set(data.results.flatMap((e) => e.diets));
     apiDiets.add("vegetarian");

@@ -1,0 +1,23 @@
+.input {
+  font-size: 1.2em;
+  text-align: center;
+  margin: 80px 0 0 80px;
+  border: 2px solid #44aa3bfd; /* se agrega un borde alrededor de input */
+  border-radius: 3px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* se agrega una sombra a input */
+  transition: all 0.3s ease-in-out; /* se agrega un efecto de transición suave */
+}
+
+.input:hover {
+  transform: scale(1.1);
+  border-color: #149414fd; /* se cambia el color del borde en hover */
+}
+
+@media screen and (max-width: 900px) {
+  .input {
+    width: 50%;
+    margin: 0px;
+    font-size: 1em;
+    margin-left: 5px;
+  }
+}

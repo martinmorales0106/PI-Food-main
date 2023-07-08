@@ -39,15 +39,18 @@ const Form = () => {
 
     const regexNum = /^([0-9])*$/;
     if (regexNum.test(target)) {
-      //checkeo si es un checkbox
-      if (!form.diets.includes(parseInt(target))) {
-        // si no esta en form lo agrego
-        setForm({ ...form, diets: [...form.diets, parseInt(target)] });
+      // checkeo si es un checkbox
+      const selectedDiet = diets.find((diet) => diet.id === parseInt(target));
+      const selectedDietName = selectedDiet ? selectedDiet.name : "";
+
+      if (!form.diets.includes(selectedDietName)) {
+        // si no está en form lo agrego
+        setForm({ ...form, diets: [...form.diets, selectedDietName] });
       } else {
-        // si esta lo quito
+        // si está lo quito
         setForm({
           ...form,
-          diets: [...form.diets.filter((diet) => diet !== parseInt(target))],
+          diets: [...form.diets.filter((diet) => diet !== selectedDietName)],
         });
       }
     } else {
@@ -203,7 +206,6 @@ const Form = () => {
             className={style.button}
           ></Button>
         </div>
-        {/* ACA VA UN SELECTBOX CON TIPOS DE DIETA */}
       </form>
     </div>
   );

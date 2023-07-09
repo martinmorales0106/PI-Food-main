@@ -59,7 +59,9 @@ const Form = () => {
       validation({ ...form, [target]: value }, errors, setErrors, target);
     }
   };
+  
   setUnChecked(true);
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     alert("Recipe created successfully");

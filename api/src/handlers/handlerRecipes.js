@@ -15,6 +15,7 @@ const handlerIdRecipe = async (req, res) => {
 
 const handlerGetRecipes = async (req, res) => {
   const { name } = req.query;
+  
   let recipes;
   try {
     if (name) recipes = await getRecipeByName(name);

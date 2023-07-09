@@ -5,7 +5,7 @@ import style from "./Cards.module.css";
 const Cards = ({ recipes }) => {
   return (
     <div className={style.container}>
-      {recipes.map(({ title, image, id, diets, healthScore }) => {
+      {recipes?.map(({ title, image, id, diets, healthScore }) => {
         return (
           <Card
             key={id}

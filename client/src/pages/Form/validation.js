@@ -49,7 +49,7 @@ export const validation = (form, errors, setErrors, target) => {
       setErrors({
         ...errors,
         image:
-          "Invalid URL, try an ULR like: https://github.com/martinellilucas",
+          "Invalid URL, try an ULR like: https://images.getrecipekit.com/20220429152824-fajitas-20de-20pollo.jpg?class=16x9",
       });
     } else {
       setErrors({ ...errors, image: "" });

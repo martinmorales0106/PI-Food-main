@@ -14,7 +14,10 @@ const SearchBar = ({ currentPage, setCurrentPage }) => {
   };
 
   useEffect(() => {
-    dispatch(searchRecipe(search));
+    const searchTimeout = setTimeout(() => {
+      dispatch(searchRecipe(search));
+    }, 500); // Espera 500ms después de que el usuario deja de escribir para realizar la búsqueda
+    return () => clearTimeout(searchTimeout);
   }, [search, dispatch]);
 
   return (

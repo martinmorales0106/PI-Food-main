@@ -34,8 +34,9 @@ const Detail = () => {
               alt={recipeDetail.title}
             />
             <hr className={style.separator} />
-            <p className={style.text}>Health Score: {recipeDetail.healthScore}</p>
+            <h2 className={style.subTitle}>Health Score: {recipeDetail.healthScore}</h2>
             <hr className={style.separator} />
+            <h2 className={style.subTitle}>Type of Diets: </h2>
             <ul className={style.diets}>
               {recipeDetail.diets.map((element) => (
                 <li key={element.id} className={style.itemList}>

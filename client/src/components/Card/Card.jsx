@@ -2,8 +2,7 @@ import style from "./Card.module.css";
 import { Link } from "react-router-dom";
 
 const Card = ({ title, image, id, healthScore, diets }) => {
-  const dietsNames = diets?.map((diet) => diet.name).join(", ");
-
+  const dietsNames = diets && diets.map((diet) => diet && diet.name).join(", ");
   return (
     <Link className={style.card} to={`/detail/${id}`}>
       <div className={style.imageContainer}>

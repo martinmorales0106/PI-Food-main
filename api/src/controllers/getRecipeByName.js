@@ -31,18 +31,18 @@ const getRecipeByName = async (name) => {
     }
     return recipes;
   });
-
+ 
   let recipesDB = await Recipe.findAll({
     where: { title: { [Op.iLike]: `%${name}%` } },
-    include: Diet,
   });
+  
   for (const recipe of recipesDB) {
-    
-    let diets = recipe.diets.map((diet) => diet.name);
-    recipe.dataValues = { ...recipe.dataValues, diets };
-    // let diets = await recipe.getDiets({ raw: true });
-    // recipe.dataValues = { ...recipe.dataValues, diets: [...diets] };
+    // let diets = recipe.diets.map((diet) => diet.name);
+    // recipe.dataValues = { ...recipe.dataValues, diets };
+    let diets = await recipe.getDiets({ raw: true });
+    recipe.dataValues = { ...recipe.dataValues, diets: [...diets] };
   }
+
   return [...recipesDB, ...recipesApi];
 };
 

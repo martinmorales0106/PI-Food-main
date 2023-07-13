@@ -1,18 +1,18 @@
 .navBar {
+  margin: 0;
+  padding: 0;
   position: fixed;
   top: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  background: #497944fd;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  background:  #228b22c2;
   background-image: url("../../img/NavBar.jpg");
   background-position: right center;
   background-size: contain;
   background-repeat: no-repeat;
-  height: 120px;
+  height: 70px;
   text-shadow: 2px 2px 3px black;
   color: white;
   transition: 0.3s ease-in-out;
@@ -23,35 +23,31 @@
   position: absolute;
   width: 50px;
   height: 120%;
-  background-color: #44aa3bfd;
+  background-color: #A0522D;;
   top: 50%;
   transform: skewX(330deg) translate(-300%, -58%);
   transition: all 0.5s;
 }
 .navBar:hover {
-  background-color: rgba(149, 231, 149, 0.8);
-  color: #44aa3bfd;
+  background-color: #8fbc8fce;
+  color: #A0522D;
 }
 .navBar:hover::before {
   transform: skewX(330deg) translate(650%, -58%);
   transition-delay: 0.1s;
 }
-.logo {
-  height: 80%;
-  margin-top: 10px;
-  margin-left: 25px;
-}
+
 .menuContainer {
   display: flex;
   justify-content: right;
-  margin-right: 250px;
-  margin-top: 60px;
+  margin-right: 100px;
+  margin-top: 20px;
 }
 
 .menuText {
   font-size: 1.5em;
   display: flex;
-  padding: 10px;
+  padding: 5px 25px 5px 25px;
   color: white;
   text-decoration: none;
   transition: 0.3s ease-in-out;
@@ -59,6 +55,7 @@
 .menuText:hover {
   transform: scale(0.9);
   transition-delay: 0.3s;
+  
 }
 .menuText:visited {
   color: white;
@@ -67,20 +64,22 @@
 .active {
   font-size: 1.5em;
   display: flex;
-  padding: 10px;
+  padding: 5px;
   text-decoration: none;
   transition: 0.3s ease-in-out;
   transform: scale(1.2);
   transition-delay: 0.3s;
+  
 }
 
 .active:visited {
-  color: white;
+  color: #A0522D; 
 }
 .searchContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: -50px
 }
 @media screen and (max-width: 900px) {
   .navBar {

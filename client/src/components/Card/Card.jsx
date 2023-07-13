@@ -10,8 +10,8 @@ const Card = ({ title, image, id, healthScore, diets }) => {
       </div>
       <div className={style.content}>
         <h1 className={style.title}>{title}</h1>
-        <h2 className={style.healthScore}>Health Score: {healthScore}</h2>
-        <h2 className={style.dietsTitle}>Type of Diets:</h2>
+        <h2 className={style.subTitle}>Health Score: {healthScore}</h2>
+        <h2 className={style.subTitle}>Type of Diets:</h2>
         <p className={style.diets}>{dietsNames}</p>
       </div>
     </Link>

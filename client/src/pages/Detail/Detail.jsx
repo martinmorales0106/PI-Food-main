@@ -19,22 +19,30 @@ const Detail = () => {
 
   return (
     <div className={style.detailView}>
+      <h1 className={style.detailTitle}>Recipe Detail</h1>
       <NavLink className={style.button} to="/home">
-        <Button className={style.button} display={true} text={"⬅"} />
+        <Button className={style.button} display={true} text={"⬅ Back"} />
       </NavLink>
-      <h1 className={style.detailTitle}>Recipe Detail:</h1>
       {recipeDetail.title ? (
         <div className={style.container}>
           <div className={style.innerContainer}>
             <h1 className={style.title}>{recipeDetail.title}</h1>
-
             <img
               className={style.image}
               src={recipeDetail.image}
               alt={recipeDetail.title}
             />
             <hr className={style.separator} />
-            <h2 className={style.subTitle}>Health Score: {recipeDetail.healthScore}</h2>
+            <h2 className={style.subTitle}>Summary</h2>
+            <p className={style.text}>
+              {recipeDetail.summary.replace(/<[^>]*>/g, "")}
+            </p>
+            <hr className={style.separator} />
+          </div>
+          <div className={style.innerContainer}>
+            <h2 className={style.subTitle}>
+              Health Score: <span className={style.text}>{recipeDetail.healthScore}</span>
+            </h2>
             <hr className={style.separator} />
             <h2 className={style.subTitle}>Type of Diets: </h2>
             <ul className={style.diets}>
@@ -44,23 +52,20 @@ const Detail = () => {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className={style.innerContainer}>
-            <h2 className={style.subTitle}>Summary</h2>
             <hr className={style.separator} />
-            <p className={style.text}>
-              {recipeDetail.summary.replace(/<[^>]*>/g, "")}
-            </p>
             <h2 className={style.subTitle}>Instructions</h2>
-            <hr className={style.separator} />
             <p className={style.text}>
               {recipeDetail.instructions.replace(/<[^>]*>/g, "")}
             </p>
+            <hr className={style.separator} />
           </div>
         </div>
       ) : (
         <h1 className={style.loading}>Loading...</h1>
       )}
+      <NavLink className={style.button} to="/home">
+        <Button className={style.button} display={true} text={"⬅ Back"} />
+      </NavLink>
     </div>
   );
 };

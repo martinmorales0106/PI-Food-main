@@ -1,37 +1,36 @@
 .button {
-  font-size: 15px;
-  color: white;
+  font-size: 14px;
+  color: #ffffff; /* Blanco */
   text-decoration: none;
+  border: none;
   border-radius: 5px;
-  box-shadow: 3px 3px 8px black;
-  transition: all 0.3s;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
   text-shadow: 1px 1px 3px black;
-  background: rgba(97, 245, 109, 0.7);
+  background: #228b2291; /* Verde bosque */
   padding: 1em 1em;
-  border: 2px solid white;
+  border: 2px solid #ffffff; /* Blanco */
   cursor: pointer;
   position: relative;
   overflow: hidden;
   font-weight: bolder;
 }
-.noButton {
-  display: none;
-}
+
 .button:before {
   content: "";
   position: absolute;
   width: 100px;
   height: 120%;
-  background-color: #84e995;
+  background-color: #228b228a; /* Verde claro */
   top: 50%;
   transform: skewX(30deg) translate(-150%, -50%);
   transition: all 0.5s;
 }
 
 .button:hover {
-  background-color: white;
-  color: #36db3e;
-  border: 2px solid #36db3e;
+  background-color: #ffffffbb; /* Blanco */
+  color: #228b22; /* Verde claro */
+  border: 2px solid #228b2291; /* Verde claro */
 }
 
 .button:hover::before {
@@ -43,12 +42,37 @@
   transform: scale(0.9);
 }
 
+.noButton {
+  font-size: 14px;
+  color: #ffffff; /* Blanco */
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  text-shadow: 1px 1px 3px black;
+  background: #db313191; /* Verde bosque */
+  padding: 1em 1em;
+  border: 2px solid #ffffff; /* Blanco */
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  font-weight: bolder;
+}
+
+.noButton:hover {
+  background-color: #ffffffbb; /* Blanco */
+  color: #db313191; /* Verde claro */
+  border: 2px solid #db313191; /* Verde claro */
+}
+
 @media screen and (max-width: 800px) {
   .button {
     font-size: 10px;
     padding: 0.5em 1em;
   }
 }
+
 @media screen and (max-width: 600px) {
   .button {
     font-size: 8px;

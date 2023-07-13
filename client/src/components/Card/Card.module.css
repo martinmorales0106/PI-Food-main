@@ -2,54 +2,53 @@
   text-decoration: none;
   text-shadow: 3px 3px 8px black;
   color: whitesmoke;
-  width: 70%;
-  height: 45rem;
-  margin: 20px;
-  background: rgba(49, 206, 57, 0.171);
-  border: 1px solid whitesmoke;
+  width: 80%;
+  height: 470px;
+  margin: 15px;;
+  border: 1px solid #228B22;
   border-radius: 15px;
-  box-shadow: 3px 3px 8px #7de479;
+  box-shadow: 8px 8px 8px 8px #228B22;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  transition: all 0.4s;
+  transition: all 0.5s;
+}
+
+.card:hover {
+  opacity: 0.8;
+  transform: translateY(-30px);
+  transition: 0.5s;
 }
 
 .title {
-  font-size: 1.5em;
-  text-decoration: underline;
-  padding: 0.3em;
+  font-size: 1.4em;
+  color: whitesmoke;
 }
 
 .subTitle {
-  font-size: 1em;
+  font-size: 1.2em;
   text-decoration: underline;
+  color: whitesmoke;
+  text-decoration: none;
 }
 
 .image {
-  margin-top: 0px;
-  height: 20rem;
-  width: 100%;
-  border-radius: 15px 15px 0px 0px;
+  height: 13rem;
+  width:  310px;
+  border-radius: 10px;
+  
 }
 
 .diets {
   text-align: center;
-  height: 10rem;
   border: 0px;
-  width: 90%;
-  margin: 5px;
+  width: 100%;
   background: none;
-  color: white;
-  font-size: 1.2em;
-  padding: 1em 1em;
+  color: whitesmoke;
+  font-size: 1.1em;
 }
 
-.card:focus {
-  transform: scale(1.05);
-  transition-delay: 0.4s;
-}
 
 @media screen and (max-width: 1200px) {
   .card {

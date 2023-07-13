@@ -1,15 +1,19 @@
 .container {
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 5px;
 }
 
 .list {
   list-style: none;
   display: flex;
-  padding: 1px;
-  justify-content: center;
+  padding: 5px;
+  justify-content:center;
   align-items: center;
+  text-align: center;
 }
 
 .noActive {
@@ -26,7 +30,7 @@
   color: white;
   box-shadow: 3px 3px 8px black;
   text-shadow: 1px 1px 3px black;
-  background: rgba(97, 245, 97, 0.7);
+  background: #8FBC8F;
   transition: all 0.5s;
 }
 .isActive {
@@ -39,10 +43,10 @@
   border-radius: 5px;
   padding: 0.5em;
   margin: 2px;
-  color: #36db44;
+  color: #228B22;
   box-shadow: 3px 3px 8px black;
   transition: all 0.5s;
-  text-shadow: #90e984;
+  text-shadow: #8FBC8F;
   border: 2px solid black;
   background-color: white;
 }

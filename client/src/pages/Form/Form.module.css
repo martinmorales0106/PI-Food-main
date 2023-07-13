@@ -2,42 +2,37 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 140px;
-  background-image: url("../../img/formBG.jpg");
+  background-image: url("../../img/form1.jpg");
   background-repeat: no-repeat;
   background-position: top;
-  background-size: cover;
-  color: white;
-  padding-bottom: 100px;
+  background-size: 100% 100%;
+  color: #FFFFFF ;
+  padding-top: 60px;
+  
 }
 .title {
   text-align: center;
   margin-bottom: 50px;
   font-size: 3em;
-  text-shadow: 3px 3px 3px #db363b;
-  text-decoration: overline;
+  text-shadow: 4px 4px 6px #228B22 ;
 }
 .form {
-  background-image: url("../../img/formBG.jpg");
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: cover;
   display: grid;
   grid-gap: 1rem;
-  padding: 3em;
   grid-template-columns: repeat(2, 1fr);
   margin: 0 auto;
   width: max-content;
   height: max-content;
   margin-bottom: 50px;
   border-radius: 1em;
-  box-shadow: 3px 3px 5px rgba(245, 97, 97, 0.7);
+  box-shadow: 3px 3px 5px 3px #228B22;
 }
 .section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-right: 0px;
 }
 .sectionDiets {
   display: flex;
@@ -46,13 +41,13 @@
   align-items: center;
 }
 .input {
-  background: rgba(245, 97, 97, 0.7);
+  background: #228b229a;
   color: white;
   text-shadow: 1px 1px 1px black;
   padding: 0.3em;
   font-size: 1.3em;
   text-align: center;
-  width: 450px;
+  width: 350px;
   margin: 10px;
   border: none;
   box-shadow: 0px 1px 1px black;
@@ -64,8 +59,8 @@
 }
 .label {
   font-weight: bolder;
-  text-shadow: 2px 2px 3px white;
-  color: black;
+  text-shadow: 2px 2px 3px black;
+  color: #ffffffe5 ;
   font-size: 1.5em;
   margin: 10px;
 }
@@ -82,7 +77,7 @@
   border: 0px;
   border-radius: 3px;
   color: white;
-  background-color: #db363b;
+  background-color: #228b229a;
   box-shadow: 3px 3px 8px black;
 }
 .msgError {
@@ -90,13 +85,13 @@
   font-weight: lighter;
   margin: 15px;
   font-size: 1.3em;
-  color: #db363b;
-  text-shadow: 1px 1px 1px black;
+  color: #c90000;
+  text-shadow: 3px 3px 8px black;
 }
 
 .checkbox {
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
 }
 
 @media screen and (max-width: 2400px) {

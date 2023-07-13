@@ -7,6 +7,11 @@ export const validation = (form, errors, setErrors, target) => {
         ...errors,
         title: "The title can't contain more than 30 characters",
       });
+    } else {
+      setErrors({
+        ...errors,
+        title: "",
+      });
     }
     if (!form.title) {
       setErrors({ ...errors, title: "Empty title is invalid" });
@@ -49,7 +54,7 @@ export const validation = (form, errors, setErrors, target) => {
       setErrors({
         ...errors,
         image:
-          "Invalid URL, try an ULR like: https://images.getrecipekit.com/20220429152824-fajitas-20de-20pollo.jpg?class=16x9",
+          "Invalid URL, try an ULR like: https://www.google.com.co",
       });
     } else {
       setErrors({ ...errors, image: "" });

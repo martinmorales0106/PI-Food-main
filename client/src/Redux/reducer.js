@@ -24,6 +24,7 @@ const initialState = {
   recipes: [],
   recipeDetail: {},
   allRecipes: [],
+  filteredRecipes: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -65,18 +66,28 @@ const reducer = (state = initialState, action) => {
           ],
         };
       }
+    
       return { ...state };
     case FILTER:
       const validUUID =
         /[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/;
 
-      if (action.payload === "All") {
-        return { ...state, recipes: [...state.allRecipes] };
+      if (action.payload === "AllData") {
+        return {
+          ...state,
+          recipes: [...state.allRecipes],
+          filteredRecipes: [...state.allRecipes],
+        };
       }
       if (action.payload === "db") {
         return {
           ...state,
           recipes: [
+            ...state.allRecipes.filter((recipe) => {
+              return validUUID.test(recipe.id);
+            }),
+          ],
+          filteredRecipes: [
             ...state.allRecipes.filter((recipe) => {
               return validUUID.test(recipe.id);
             }),
@@ -92,19 +103,31 @@ const reducer = (state = initialState, action) => {
               return !validUUID.test(recipe.id);
             }),
           ],
+          filteredRecipes: [
+            ...state.allRecipes.filter((recipe) => {
+              return !validUUID.test(recipe.id);
+            }),
+          ],
         };
-      } else
+      }
+
+      if (action.payload !== "AllDiets") {
         return {
           ...state,
-
           recipes: [
-            ...state.allRecipes.filter((recipe) =>
+            ...state.filteredRecipes.filter((recipe) =>
               recipe.diets.find((element) => {
                 return element.name === action.payload ? true : false;
               })
             ),
           ],
         };
+      }
+      if (action.payload === "AllDiets") {
+        return { ...state, recipes: [...state.filteredRecipes] };
+      }
+
+      return { ...state, recipes: [...state.allRecipes] };
 
     case GET_RECIPES:
       return {
@@ -117,6 +140,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         diets: [...action.payload],
       };
+      
     case SEARCH_RECIPE:
       return {
         ...state,
@@ -149,7 +173,7 @@ const reducer = (state = initialState, action) => {
         allRecipes: [...state.allRecipes, action.payload],
         recipes: [...state.recipes, action.payload],
       };
-      
+
     case POST_RECIPE_ERROR:
       console.log("Error al publicar la receta:", action.payload);
       // Puedes realizar cualquier acción adicional necesaria para manejar el error

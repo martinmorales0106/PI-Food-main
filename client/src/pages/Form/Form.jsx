@@ -30,9 +30,7 @@ const Form = () => {
     image: "",
     diets: "",
   });
-  const setUnChecked = (boolean) => {
-    return boolean;
-  };
+
   const handleChange = (event) => {
     const value = event.target.value;
     const target = event.target.name;
@@ -59,27 +57,40 @@ const Form = () => {
       validation({ ...form, [target]: value }, errors, setErrors, target);
     }
   };
-  
-  setUnChecked(true);
-  
+
+  const isFormValid = () => {
+    return (
+      form.title &&
+      form.summary &&
+      form.healthScore &&
+      form.instructions &&
+      form.image &&
+      form.diets.length > 0 &&
+      !Object.values(errors).some((error) => error !== "")
+    );
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert("Recipe created successfully");
-    dispatch(postRecipe(form));
-    setForm({
-      title: "",
-      summary: "",
-      healthScore: 0,
-      instructions: "",
-      image: "",
-      diets: [],
-    });
-    setUnChecked(false);
+    if (isFormValid()) {
+      alert("Recipe created successfully");
+      dispatch(postRecipe(form));
+      setForm({
+        title: "",
+        summary: "",
+        healthScore: 0,
+        instructions: "",
+        image: "",
+        diets: [],
+      });
+    } else {
+      alert("Please fill in all fields");
+    }
   };
 
   return (
     <div className={style.container}>
-      <h2 className={style.title}>Add your own recipe !</h2>
+      <h2 className={style.title}>Add your own recipe!</h2>
       <form onSubmit={handleSubmit} className={style.form}>
         <div className={style.section}>
           <label htmlFor="title" className={style.label}>
@@ -177,6 +188,7 @@ const Form = () => {
             <></>
           )}
           {diets.map((diet) => {
+            const isChecked = form.diets.includes(diet.name);
             return (
               <div key={diet.id}>
                 <label htmlFor={diet.id} className={style.label}>
@@ -187,18 +199,21 @@ const Form = () => {
                   type="checkbox"
                   name={diet.id}
                   id={diet.id}
-                  checked={form.diets.includes(diet.id)}
+                  checked={isChecked}
                   onChange={handleChange}
-                ></input>
+                />
               </div>
             );
           })}
           <Button
             text="Submit"
             display={
-              form.instructions &&
-              form.summary &&
               form.title &&
+              form.summary &&
+              form.healthScore &&
+              form.instructions &&
+              form.image &&
+              form.diets.length > 0 &&
               !errors.title &&
               !errors.summary &&
               !errors.instructions &&

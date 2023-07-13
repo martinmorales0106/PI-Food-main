@@ -5,10 +5,10 @@ import style from "./Cards.module.css";
 const Cards = ({ recipes }) => {
   return (
     <div className={style.container}>
-      {recipes?.map(({ title, image, id, diets, healthScore }) => {
+      {recipes.map(({ title, image, id, diets, healthScore }, index) => {
         return (
           <Card
-            key={id}
+            key={index}
             id={id}
             title={title}
             image={image}

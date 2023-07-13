@@ -1,12 +1,12 @@
 import style from "./Button.module.css";
 
-const Button = (props) => {
+const Button = (button) => {
   return (
     <button
-      className={props.display ? style.button : style.noButton}
-      onClick={props.onClick}
+      className={button.display ? style.button : style.noButton}
+      onClick={button.onClick}
     >
-      {props.text}
+      {button.text}
     </button>
   );
 };

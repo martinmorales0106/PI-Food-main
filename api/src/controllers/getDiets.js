@@ -5,7 +5,7 @@ const { API_KEY, URL } = process.env;
 
 const getDiets = async () => {
   let diets = await Diet.findAll();
-  console.log(diets);
+  
   if (!diets.length) {
     const { data } = await axios.get(
       `${URL}/complexSearch?apiKey=${API_KEY}&number=30&addRecipeInformation=true`

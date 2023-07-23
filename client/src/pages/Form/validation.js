@@ -1,63 +1,66 @@
-export const validation = (form, errors, setErrors, target) => {
+export const validation = (form, setErrors, name) => {
   const regexURL = /^https?:\/\/[\w-]+(\.[\w-]+)+[/#?]?.*$/;
+  const { title, summary, instructions, healthScore, image} = form;
 
-  if (target === "title") {
-    if (form.title.length > 30) {
-      setErrors({
-        ...errors,
-        title: "The title can't contain more than 30 characters",
-      });
+  const errorMessages = {};
+
+  const validateTitle = () => {
+    if (title.length > 50) {
+      errorMessages.title = "The title can't contain more than 50 characters";
+    } else if (!title) {
+      errorMessages.title = "Empty title is invalid";
     } else {
-      setErrors({
-        ...errors,
-        title: "",
-      });
+      errorMessages.title = "";
     }
-    if (!form.title) {
-      setErrors({ ...errors, title: "Empty title is invalid" });
+  };
+
+  const validateSummary = () => {
+    if (summary.length > 1000) {
+      errorMessages.summary = "Summary can't contain more than 1000 characters";
+    } else if (!summary) {
+      errorMessages.summary = "Empty summary is invalid";
     } else {
-      setErrors({ ...errors, title: "" });
+      errorMessages.summary = "";
     }
+  };
+
+  const validateInstructions = () => {
+    errorMessages.instructions = instructions.length
+      ? ""
+      : "Empty instructions are invalid";
+  };
+
+  const validateHealthScore = () => {
+    errorMessages.healthScore =
+      healthScore > 100 ? "Health score limit is 100" : "";
+  };
+
+  const validateImage = () => {
+    errorMessages.image = regexURL.test(image)
+      ? ""
+      : "Invalid URL, try a URL like: https://www.google.com";
+  };
+
+
+  switch (name) {
+    case "title":
+      validateTitle();
+      break;
+    case "summary":
+      validateSummary();
+      break;
+    case "instructions":
+      validateInstructions();
+      break;
+    case "healthScore":
+      validateHealthScore();
+      break;
+    case "image":
+      validateImage();
+      break;
+    default:
+      break;
   }
-  if (target === "summary") {
-    if (form.summary.length > 100) {
-      setErrors({
-        ...errors,
-        summary: "Summary can't contain more than 100 characters",
-      });
-    }
-    if (!form.summary) {
-      setErrors({ ...errors, summary: "Empty summary is invalid" });
-    } else {
-      setErrors({
-        ...errors,
-        summary: "",
-      });
-    }
-  }
-  if (target === "instructions") {
-    if (!form.instructions.length) {
-      setErrors({ ...errors, instructions: "Empty instructions are invalid" });
-    } else {
-      setErrors({ ...errors, instructions: "" });
-    }
-  }
-  if (target === "healthScore") {
-    if (form.healthScore > 100) {
-      setErrors({ ...errors, healthScore: "Health score limit is 100" });
-    } else {
-      setErrors({ ...errors, healthScore: "" });
-    }
-  }
-  if (target === "image") {
-    if (!regexURL.test(form.image)) {
-      setErrors({
-        ...errors,
-        image:
-          "Invalid URL, try an ULR like: https://www.google.com.co",
-      });
-    } else {
-      setErrors({ ...errors, image: "" });
-    }
-  }
+
+  setErrors(errorMessages);
 };

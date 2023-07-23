@@ -2,19 +2,18 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-image: url("../../img/form1.jpg");
+  background-image: url("../../img/form.jpg");
   background-repeat: no-repeat;
   background-position: top;
   background-size: 100% 100%;
-  color: #FFFFFF ;
+  color: #ffffff;
   padding-top: 60px;
-  
 }
 .title {
   text-align: center;
   margin-bottom: 50px;
   font-size: 3em;
-  text-shadow: 4px 4px 6px #228B22 ;
+  text-shadow: 4px 4px 6px #228b22;
 }
 .form {
   display: grid;
@@ -25,7 +24,7 @@
   height: max-content;
   margin-bottom: 50px;
   border-radius: 1em;
-  box-shadow: 3px 3px 5px 3px #228B22;
+  box-shadow: 3px 3px 5px 3px #228b22;
 }
 .section {
   display: flex;
@@ -60,24 +59,20 @@
 .label {
   font-weight: bolder;
   text-shadow: 2px 2px 3px black;
-  color: #ffffffe5 ;
+  color: #ffffffe5;
   font-size: 1.5em;
   margin: 10px;
 }
-.button {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
+
 .error {
   font-size: 1.3em;
   text-align: center;
-  width: 500px;
+  width: 400px;
   margin: 20px;
-  border: 0px;
+  border: 3px;
   border-radius: 3px;
   color: white;
-  background-color: #228b229a;
+  background-color: red;
   box-shadow: 3px 3px 8px black;
 }
 .msgError {

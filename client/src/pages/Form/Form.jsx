@@ -32,29 +32,24 @@ const Form = () => {
   });
 
   const handleChange = (event) => {
-    const value = event.target.value;
-    const target = event.target.name;
-
+    const { value, name } = event.target;
     const regexNum = /^([0-9])*$/;
-    if (regexNum.test(target)) {
-      // checkeo si es un checkbox
-      const selectedDiet = diets.find((diet) => diet.id === parseInt(target));
+
+    if (regexNum.test(name)) {
+      const selectedDiet = diets.find((diet) => diet.id === parseInt(name));
       const selectedDietName = selectedDiet ? selectedDiet.name : "";
 
       if (!form.diets.includes(selectedDietName)) {
-        // si no está en form lo agrego
         setForm({ ...form, diets: [...form.diets, selectedDietName] });
       } else {
-        // si está lo quito
         setForm({
           ...form,
           diets: [...form.diets.filter((diet) => diet !== selectedDietName)],
         });
       }
     } else {
-      setForm({ ...form, [target]: value });
-
-      validation({ ...form, [target]: value }, errors, setErrors, target);
+      setForm({ ...form, [name]: value });
+      validation({ ...form, [name]: value }, setErrors, name);
     }
   };
 
@@ -103,11 +98,9 @@ const Form = () => {
             name="title"
             value={form.title}
             className={errors.title ? style.error : style.input}
-          ></input>
-          {errors.title ? (
+          />
+          {errors.title && (
             <span className={style.msgError}>{errors.title}</span>
-          ) : (
-            <></>
           )}
 
           <label htmlFor="summary" className={style.label}>
@@ -115,33 +108,29 @@ const Form = () => {
           </label>
           <textarea
             onChange={handleChange}
-            placeholder="📝"
+            placeholder="📜"
             type="text"
             name="summary"
             value={form.summary}
             className={errors.summary ? style.error : style.input}
-          ></textarea>
-          {errors.summary ? (
+          />
+          {errors.summary && (
             <span className={style.msgError}>{errors.summary}</span>
-          ) : (
-            <></>
           )}
 
-          <label htmlFor="healthscore" className={style.label}>
+          <label htmlFor="healthScore" className={style.label}>
             Health Score
           </label>
           <input
             onChange={handleChange}
-            placeholder="📝"
             type="number"
             name="healthScore"
             value={form.healthScore}
             className={errors.healthScore ? style.error : style.input}
-          ></input>
-          {errors.healthScore ? (
+            min="0"
+          />
+          {errors.healthScore && (
             <span className={style.msgError}>{errors.healthScore}</span>
-          ) : (
-            <></>
           )}
 
           <label htmlFor="instructions" className={style.label}>
@@ -149,16 +138,14 @@ const Form = () => {
           </label>
           <textarea
             onChange={handleChange}
-            placeholder="📝"
+            placeholder="✏️"
             type="text"
             name="instructions"
             value={form.instructions}
             className={errors.instructions ? style.error : style.input}
-          ></textarea>
-          {errors.instructions ? (
+          />
+          {errors.instructions && (
             <span className={style.msgError}>{errors.instructions}</span>
-          ) : (
-            <></>
           )}
 
           <label htmlFor="image" className={style.label}>
@@ -166,27 +153,20 @@ const Form = () => {
           </label>
           <input
             onChange={handleChange}
-            placeholder="📝"
+            placeholder="🔗"
             type="text"
             name="image"
             value={form.image}
             className={errors.image ? style.error : style.input}
-          ></input>
-          {errors.image ? (
+          />
+          {errors.image && (
             <span className={style.msgError}>{errors.image}</span>
-          ) : (
-            <></>
           )}
         </div>
         <div className={style.sectionDiets}>
           <h2 className={style.label}>
             Select the diets which your recipe belongs to:
           </h2>
-          {errors.diets ? (
-            <span className={style.msgError}>{errors.diets}</span>
-          ) : (
-            <></>
-          )}
           {diets.map((diet) => {
             const isChecked = form.diets.includes(diet.name);
             return (
@@ -220,8 +200,7 @@ const Form = () => {
               !errors.image &&
               !errors.diets
             }
-            className={style.button}
-          ></Button>
+          />
         </div>
       </form>
     </div>

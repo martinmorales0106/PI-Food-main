@@ -1,10 +1,9 @@
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Cards from "../../components/Cards/Cards";
 import style from "./Home.module.css";
 import { filter, getDiets, getRecipes, order } from "../../Redux/actions";
-import { useEffect, useState } from "react";
-
 import Pagination from "../../components/Pagination/Pagination";
+import Cards from "../../components/Cards/Cards";
 
 const Home = ({ currentPage, setCurrentPage }) => {
   const dispatch = useDispatch();
@@ -17,14 +16,13 @@ const Home = ({ currentPage, setCurrentPage }) => {
   const firstIndex = lastIndex - recipesPerPage;
 
   const handleOrder = (event) => {
-    const judgment = event.target.value;
-    dispatch(order(judgment));
+    const { value } = event.target;
+    dispatch(order(value));
     setCurrentPage(1);
   };
   const handleFilter = (event) => {
-    const judgment = event.target.value;
-    const typeDiets = event.target.name;
-    if (typeDiets === "diets") {
+    const { value, name } = event.target;
+    if (name === "diets") {
       const originFilter = document.querySelector(
         'select[name="origin"]'
       ).value;
@@ -33,7 +31,7 @@ const Home = ({ currentPage, setCurrentPage }) => {
         return;
       }
     }
-    dispatch(filter(judgment));
+    dispatch(filter(value));
     setCurrentPage(1);
   };
 
@@ -89,7 +87,7 @@ const Home = ({ currentPage, setCurrentPage }) => {
               return <option key={diet.id}>{diet.name}</option>;
             })
           ) : (
-            <></>
+            <Fragment></Fragment>
           )}
         </select>
       </div>

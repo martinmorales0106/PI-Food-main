@@ -29,106 +29,84 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ORDER:
-      if (action.payload === "ascendenteAlf") {
-        return {
-          ...state,
-          recipes: [
-            ...state.recipes.sort((a, b) => ascendant(a.title, b.title)),
-          ],
-        };
+    case ORDER: {
+      const { payload } = action;
+      let sortedRecipes = [];
+
+      if (payload === "ascendenteAlf") {
+        sortedRecipes = [
+          ...state.recipes.sort((a, b) => ascendant(a.title, b.title)),
+        ];
+      } else if (payload === "descendenteAlf") {
+        sortedRecipes = [
+          ...state.recipes.sort((a, b) => descendant(a.title, b.title)),
+        ];
+      } else if (payload === "ascendenteHS") {
+        sortedRecipes = [
+          ...state.recipes.sort((a, b) => a.healthScore - b.healthScore),
+        ];
+      } else if (payload === "descendenteHS") {
+        sortedRecipes = [
+          ...state.recipes.sort((a, b) => b.healthScore - a.healthScore),
+        ];
+      } else {
+        return state;
       }
-      if (action.payload === "descendenteAlf") {
-        return {
-          ...state,
-          recipes: [
-            ...state.recipes.sort((a, b) => descendant(a.title, b.title)),
-          ],
-        };
-      }
-      if (action.payload === "ascendenteHS") {
-        return {
-          ...state,
-          recipes: [
-            ...state.recipes.sort((a, b) => {
-              return a.healthScore - b.healthScore;
-            }),
-          ],
-        };
-      }
-      if (action.payload === "descendenteHS") {
-        return {
-          ...state,
-          recipes: [
-            ...state.recipes.sort((a, b) => {
-              return b.healthScore - a.healthScore;
-            }),
-          ],
-        };
-      }
-    
-      return { ...state };
-    case FILTER:
+
+      return {
+        ...state,
+        recipes: sortedRecipes,
+      };
+    }
+    case FILTER: {
+      const { payload } = action;
       const validUUID =
         /[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/;
 
-      if (action.payload === "AllData") {
+      if (payload === "AllData") {
         return {
           ...state,
           recipes: [...state.allRecipes],
           filteredRecipes: [...state.allRecipes],
         };
-      }
-      if (action.payload === "db") {
+      } else if (payload === "db") {
+        const dbRecipes = state.allRecipes.filter((recipe) =>
+          validUUID.test(recipe.id)
+        );
         return {
           ...state,
-          recipes: [
-            ...state.allRecipes.filter((recipe) => {
-              return validUUID.test(recipe.id);
-            }),
-          ],
-          filteredRecipes: [
-            ...state.allRecipes.filter((recipe) => {
-              return validUUID.test(recipe.id);
-            }),
-          ],
+          recipes: dbRecipes,
+          filteredRecipes: dbRecipes,
         };
-      }
-      if (action.payload === "api") {
+      } else if (payload === "api") {
+        const apiRecipes = state.allRecipes.filter(
+          (recipe) => !validUUID.test(recipe.id)
+        );
         return {
           ...state,
-
-          recipes: [
-            ...state.allRecipes.filter((recipe) => {
-              return !validUUID.test(recipe.id);
-            }),
-          ],
-          filteredRecipes: [
-            ...state.allRecipes.filter((recipe) => {
-              return !validUUID.test(recipe.id);
-            }),
-          ],
+          recipes: apiRecipes,
+          filteredRecipes: apiRecipes,
         };
-      }
-
-      if (action.payload !== "AllDiets") {
+      } else if (payload !== "AllDiets") {
+        const filteredRecipes = state.filteredRecipes.filter((recipe) =>
+          recipe.diets.find((element) => element.name === payload)
+        );
         return {
           ...state,
-          recipes: [
-            ...state.filteredRecipes.filter((recipe) =>
-              recipe.diets.find((element) => {
-                return element.name === action.payload ? true : false;
-              })
-            ),
-          ],
+          recipes: filteredRecipes,
+        };
+      } else if (payload === "AllDiets") {
+        return {
+          ...state,
+          recipes: [...state.filteredRecipes],
+        };
+      } else {
+        return {
+          ...state,
+          recipes: [...state.allRecipes],
         };
       }
-      if (action.payload === "AllDiets") {
-        return { ...state, recipes: [...state.filteredRecipes] };
-      }
-
-      return { ...state, recipes: [...state.allRecipes] };
-
+    }
     case GET_RECIPES:
       return {
         ...state,
@@ -140,17 +118,15 @@ const reducer = (state = initialState, action) => {
         ...state,
         diets: [...action.payload],
       };
-      
     case SEARCH_RECIPE:
       return {
         ...state,
         allRecipes: [...state.recipes],
         recipes: [...action.payload],
       };
-    case ADD_RECIPE_DETAIL:
+    case ADD_RECIPE_DETAIL: {
       const { id, title, summary, healthScore, instructions, image, diets } =
         action.payload;
-
       return {
         ...state,
         recipeDetail: {
@@ -163,44 +139,43 @@ const reducer = (state = initialState, action) => {
           diets,
         },
       };
-
+    }
     case CLEAN_DETAIL:
-      return { ...state, recipeDetail: {} };
-
-    case POST_RECIPE:
       return {
         ...state,
-        allRecipes: [...state.allRecipes, action.payload],
-        recipes: [...state.recipes, action.payload],
+        recipeDetail: {},
       };
-
+    case POST_RECIPE: {
+      const updatedRecipes = [...state.allRecipes, action.payload];
+      return {
+        ...state,
+        allRecipes: updatedRecipes,
+        recipes: updatedRecipes,
+      };
+    }
     case POST_RECIPE_ERROR:
       console.log("Error al publicar la receta:", action.payload);
-      // Puedes realizar cualquier acción adicional necesaria para manejar el error
       return state;
 
     case GET_DIETS_ERROR:
       console.log("Error al obtener las dietas:", action.payload);
-      // Puedes realizar cualquier acción adicional necesaria para manejar el error
-      return state;
 
+      return state;
     case GET_RECIPES_ERROR:
       console.log("Error al obtener las recetas:", action.payload);
-      // Puedes realizar cualquier acción adicional necesaria para manejar el error
-      return state;
 
+      return state;
     case ADD_RECIPE_DETAIL_ERROR:
       console.log("Error al obtener el detalle de la receta:", action.payload);
-      // Puedes realizar cualquier acción adicional necesaria para manejar el error
-      return state;
 
+      return state;
     case SEARCH_RECIPE_ERROR:
       console.log("Error al buscar recetas:", action.payload);
-      // Puedes realizar cualquier acción adicional necesaria para manejar el
-      return state;
 
+      return state;
+      
     default:
-      return { ...state };
+      return state;
   }
 };
 

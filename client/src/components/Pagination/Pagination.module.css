@@ -24,14 +24,17 @@
   height: 20px;
   display: grid;
   border-radius: 5px;
-  padding: 0.5em;
+  padding: 0.2em;
   margin: 2px;
   border: 2px solid white;
   color: white;
   box-shadow: 3px 3px 8px black;
   text-shadow: 1px 1px 3px black;
-  background: #8FBC8F;
+  background: #228b22c4;
   transition: all 0.5s;
+  justify-content:center;
+  align-items: center;
+  text-align: center;
 }
 .isActive {
   font-weight: bolder;
@@ -41,7 +44,7 @@
   height: 25px;
   display: grid;
   border-radius: 5px;
-  padding: 0.5em;
+  padding: 0.4em;
   margin: 2px;
   color: #228B22;
   box-shadow: 3px 3px 8px black;

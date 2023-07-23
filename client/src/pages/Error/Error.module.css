@@ -1,8 +1,10 @@
-.view {
-  margin-top: 140px;
+.container {
+  margin-top: 0px;
+  justify-content: center;
+  align-items: center;
   padding-top: 20px;
-  height: 98vh;
-  background-image: url("../../img/errorBG.jpg");
+  height: 97vh;
+  background-image: url("../../img/error.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -10,14 +12,13 @@
   font-size: 5em;
   text-align: center;
   margin-top: 150px;
-  margin-left: 150px;
   color: whitesmoke;
-  text-shadow: 3px 3px 8px #db363b;
-  text-decoration: overline;
+  text-shadow: 3px 3px 8px #228B22;
 }
 @media screen and (max-width: 900px) {
   .view {
     margin-top: 40px;
+    background-size:auto;
   }
   .title {
     font-size: 3em;

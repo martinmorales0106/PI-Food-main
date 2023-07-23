@@ -14,8 +14,8 @@
   text-align: left;
   margin-left: 100px;
   color: white;
-  text-shadow: 3px 3px 3px #228B22;
-  padding: 30px 0px 0px 0px;
+  text-shadow: 3px 3px 3px #228b22;
+  padding-top: 30px;
 }
 
 .loading {
@@ -23,7 +23,7 @@
   text-align: center;
   margin-top: 150px;
   color: white;
-  text-shadow: 3px 3px 3px #228B22;
+  text-shadow: 3px 3px 3px #228b22;
 }
 
 .buttonsContainer {
@@ -31,36 +31,39 @@
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding: 0px;
+  padding: 0;
 }
+
 .menu {
   font-size: 1.3em;
-  background: #228b22b6;
+  background-color: #228b22;
   border: 1px solid white;
   color: white;
   text-shadow: 2px 2px 3px black;
-  height: max-content;
   padding: 2px;
   border-radius: 5px;
   box-shadow: 3px 3px 8px black;
   margin: 15px;
 }
+
 @media screen and (max-width: 900px) {
   .home {
     margin-top: 40px;
     padding-top: 5px;
     padding-bottom: 40px;
   }
+
   .title {
     font-size: 3em;
     text-align: center;
     margin-top: 20px;
-    margin-left: 0px;
-
+    margin-left: 0;
   }
+
   .menu {
     font-size: 0.8em;
   }
+
   .loading {
     font-size: 1.5em;
   }

@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
         {pathname !== "/" && (
-          <NavBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+          <NavBar setCurrentPage={setCurrentPage} />
         )}
         <MyRoutes currentPage={currentPage} setCurrentPage={setCurrentPage}/>
    

@@ -3,16 +3,13 @@ import style from "./NavBar.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import { useLocation } from "react-router-dom";
 
-const NavBar = ({ currentPage, setCurrentPage }) => {
+const NavBar = ({ setCurrentPage }) => {
   const { pathname } = useLocation();
   return (
     <div className={style.navBar}>
-      {pathname === "/home" ? ( // Condición para mostrar el SearchBar solo en Home
+      {pathname === "/home" ? (
         <div className={style.searchContainer}>
-          <SearchBar
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
+          <SearchBar setCurrentPage={setCurrentPage} />
         </div>
       ) : (
         <div className={style.searchContainer}></div>

@@ -2,12 +2,12 @@
   text-decoration: none;
   text-shadow: 3px 3px 8px black;
   color: whitesmoke;
-  width: 80%;
+  width: 70%;
   height: 470px;
-  margin: 15px;;
-  border: 1px solid #228B22;
+  margin: 15px;
+  border: 1px solid #228b22;
   border-radius: 15px;
-  box-shadow: 8px 8px 8px 8px #228B22;
+  box-shadow: 8px 8px 8px 8px #228b22;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,6 +24,7 @@
 .title {
   font-size: 1.4em;
   color: whitesmoke;
+  margin-left: 5px;
 }
 
 .subTitle {
@@ -34,10 +35,10 @@
 }
 
 .image {
+  margin-top: 0px;
   height: 13rem;
-  width:  310px;
-  border-radius: 10px;
-  
+  width: 100%;
+  border-radius: 15px 15px 0px 0px;
 }
 
 .diets {
@@ -47,8 +48,8 @@
   background: none;
   color: whitesmoke;
   font-size: 1.1em;
+  margin-left: 5px;
 }
-
 
 @media screen and (max-width: 1200px) {
   .card {

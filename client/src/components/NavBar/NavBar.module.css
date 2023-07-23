@@ -7,7 +7,7 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  background:  #228b22c2;
+  background:  #228b22;
   background-image: url("../../img/NavBar.jpg");
   background-position: right center;
   background-size: contain;
@@ -23,7 +23,7 @@
   position: absolute;
   width: 50px;
   height: 120%;
-  background-color: #A0522D;;
+  background-color: #A0522D;
   top: 50%;
   transform: skewX(330deg) translate(-300%, -58%);
   transition: all 0.5s;
@@ -81,6 +81,7 @@
   justify-content: space-between;
   margin: -50px
 }
+
 @media screen and (max-width: 900px) {
   .navBar {
     height: 20px;

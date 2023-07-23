@@ -3,7 +3,7 @@ import style from "./SearchBar.module.css";
 import { useDispatch } from "react-redux";
 import { searchRecipe } from "../../Redux/actions";
 
-const SearchBar = ({ currentPage, setCurrentPage }) => {
+const SearchBar = ({ setCurrentPage }) => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
 
@@ -16,7 +16,7 @@ const SearchBar = ({ currentPage, setCurrentPage }) => {
   useEffect(() => {
     const searchTimeout = setTimeout(() => {
       dispatch(searchRecipe(search));
-    }, 500); // Espera 500ms después de que el usuario deja de escribir para realizar la búsqueda
+    }, 500); 
     return () => clearTimeout(searchTimeout);
   }, [search, dispatch]);
 
@@ -27,7 +27,7 @@ const SearchBar = ({ currentPage, setCurrentPage }) => {
         className={style.input}
         value={search}
         type="search"
-        placeholder="Search"
+        placeholder="Search..."
       />
     </div>
   );

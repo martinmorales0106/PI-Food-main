@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) =>
   sequelize.define(
-    "Diet",
+    "diet",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -13,6 +13,7 @@ module.exports = (sequelize) =>
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
+        // Nombres de los tipos de dietas
       },
     },
     { timestamps: false }

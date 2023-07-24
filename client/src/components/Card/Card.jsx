@@ -8,7 +8,7 @@ const Card = ({ title, image, id, healthScore, diets }) => {
       <div className={style.imageContainer}>
         <img src={image} alt={title} className={style.image} />
       </div>
-      <div className={style.content}>
+      <div>
         <h1 className={style.title}>{title}</h1>
         <h2 className={style.subTitle}>Health Score: {healthScore}</h2>
         <h2 className={style.subTitle}>Type of Diets:</h2>

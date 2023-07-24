@@ -1,8 +1,7 @@
 const { DataTypes } = require("sequelize");
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+
 module.exports = (sequelize) => {
-  // defino el modelo
+  // Definimos el modelo
   sequelize.define(
     "recipe",
     {
@@ -14,23 +13,31 @@ module.exports = (sequelize) => {
       title: {
         type: DataTypes.STRING,
         allowNull: false,
+        //El título de la receta.
       },
       summary: {
         type: DataTypes.TEXT,
         allowNull: false,
+        //Un resumen o descripción corta de la receta.
       },
       healthScore: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        // Puntuación de la receta.
       },
       instructions: {
         type: DataTypes.TEXT,
         allowNull: false,
+        // Instrucciones detalladas para preparar la receta.
       },
       image: {
         type: DataTypes.STRING,
+        allowNull: false,
+        // URL de la imagen asociada a la receta.
       },
     },
-    { timestamps: false }
+    {
+      timestamps: false, // Desactivar la creación automática de campos de fecha (createdAt, updatedAt).
+    }
   );
 };

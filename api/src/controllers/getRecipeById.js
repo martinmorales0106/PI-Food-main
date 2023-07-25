@@ -9,41 +9,64 @@ const getRecipeById = async (idrec) => {
     /[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}/;
 
   if (!validUUID.test(idrec)) {
-    let {
-      id,
-      vegetarian,
-      title,
-      summary,
-      healthScore,
-      instructions,
-      image,
-      diets,
-    } = await axios(`${URL}/${idrec}/information?apiKey=${API_KEY}`).then(
-      (res) => {
-        return res.data;
+    try {
+      const response = await axios.get(
+        `${URL}/${idrec}/information?apiKey=${API_KEY}`
+      );
+      const {
+        id,
+        vegetarian,
+        title,
+        summary,
+        healthScore,
+        instructions,
+        image,
+        diets,
+      } = response.data;
+
+      const dietasDB = await Promise.all(
+        diets.map(async (dietName) => {
+          const diet = await Diet.findOne({
+            where: { name: { [Op.iLike]: `%${dietName}` } },
+          });
+          return diet;
+        })
+      );
+
+      if (vegetarian) {
+        const vegetarianDiet = await Diet.findOne({
+          where: { name: "vegetarian" },
+        });
+        dietasDB.push(vegetarianDiet);
       }
-    );
 
-    let dietasDB = [];
-    
-    for (let i = 0; i < diets.length; i++) {
-      let diet = await Diet.findOne({
-        where: { name: { [Op.iLike]: `%${diets[i]}` } },
-      });
-      dietasDB.push(diet);
+      return {
+        id,
+        title,
+        summary,
+        healthScore,
+        instructions,
+        image,
+        diets: dietasDB,
+      };
+    } catch (error) {
+      console.error("Error al obtener información de la API:", error);
+      throw error;
     }
-    if (vegetarian)
-      dietasDB.push(await Diet.findOne({ where: { name: "vegetarian" } }));
-    diets = dietasDB;
-
-    return { id, title, summary, healthScore, instructions, image, diets };
   } else {
-    
-    let recipeDB = await Recipe.findByPk(idrec.toString());
-    let diets = await recipeDB.getDiets({ raw: true });
-    recipeDB.dataValues = { ...recipeDB.dataValues, diets: [...diets] };
+    try {
+      const recipeDB = await Recipe.findByPk(idrec.toString());
+      if (!recipeDB) {
+        throw new Error("Receta no encontrada en la base de datos.");
+      }
 
-    return recipeDB;
+      const diets = await recipeDB.getDiets({ raw: true });
+      recipeDB.dataValues.diets = [...diets];
+      return recipeDB;
+    } catch (error) {
+      console.error("Error al obtener información de la base de datos:", error);
+      throw error;
+    }
   }
 };
 

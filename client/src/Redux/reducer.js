@@ -89,7 +89,7 @@ const reducer = (state = initialState, action) => {
         };
       } else if (payload !== "AllDiets") {
         const filteredRecipes = state.filteredRecipes.filter((recipe) =>
-          recipe.diets.find((element) => element.name === payload)
+          recipe.diets?.find((element) => element?.name === payload)
         );
         return {
           ...state,
@@ -121,7 +121,7 @@ const reducer = (state = initialState, action) => {
     case SEARCH_RECIPE:
       return {
         ...state,
-        allRecipes: [...state.recipes],
+        allRecipes: [...action.payload],
         recipes: [...action.payload],
       };
     case ADD_RECIPE_DETAIL: {

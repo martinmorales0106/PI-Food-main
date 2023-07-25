@@ -1,5 +1,5 @@
 const getRecipeById = require("../controllers/getRecipeById");
-const { getRecipeByName } = require("../controllers/getRecipeByName");
+const getRecipeByName  = require("../controllers/getRecipeByName");
 const getRecipes = require("../controllers/getRecipes");
 const postRecipe = require("../controllers/postRecipe");
 
@@ -9,33 +9,36 @@ const handlerIdRecipe = async (req, res) => {
     const recipe = await getRecipeById(id);
     res.status(200).json(recipe);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: "Error al obtener la receta por ID." });
   }
 };
 
 const handlerGetRecipes = async (req, res) => {
   const { name } = req.query;
   
-  let recipes;
   try {
-    if (name) recipes = await getRecipeByName(name);
-    else recipes = await getRecipes();
+    let recipes;
+    if (name) {
+      recipes = await getRecipeByName(name);
+    } else {
+      recipes = await getRecipes();
+    }
     res.status(200).json(recipes);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: "Error al obtener las recetas." });
   }
 };
 
-const handlerPostRecipe = (req, res) => {
+const handlerPostRecipe = async (req, res) => {
   try {
     const { title, image, summary, healthScore, instructions, diets } =
       req.body;
-    postRecipe({ title, image, summary, healthScore, instructions, diets });
+    await postRecipe({ title, image, summary, healthScore, instructions, diets });
     res.status(200).json({
-      exito: { title, image, summary, healthScore, instructions, diets },
+      success: { title, image, summary, healthScore, instructions, diets },
     });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: "Error al crear la receta." });
   }
 };
 

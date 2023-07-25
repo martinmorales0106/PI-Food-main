@@ -5,7 +5,8 @@ const handlerGetDiets = async (req, res) => {
     const dietas = await getDiets();
     res.status(200).json(dietas);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    console.error("Error al obtener las dietas:", error);
+    res.status(500).json({ error: "Error al obtener las dietas" });
   }
 };
 

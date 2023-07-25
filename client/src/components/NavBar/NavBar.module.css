@@ -29,7 +29,7 @@
   transition: all 0.5s;
 }
 .navBar:hover {
-  background-color: #8fbc8fce;
+  background-color: #55aa55;
   color: #A0522D;
 }
 .navBar:hover::before {
